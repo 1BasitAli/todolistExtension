@@ -53,4 +53,4 @@ function enterDescription(fieldInput, fieldToDelete, buttonToDelete, divToEnter)
 	divToEnter.appendChild(inputParagraph);
 }
 
-
+document.getElementById("addReminder").addEventListener("click", createReminder);
