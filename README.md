@@ -1,2 +1,2 @@
 # todolistExtension
-A general To-Do List/Reminder manager.
+A basic To-Do List/Reminder manager.
