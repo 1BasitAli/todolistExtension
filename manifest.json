@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "To-Do List",
+  "version": "1.0",
+  
+  "description": "A general To-Do List/Reminder manager.",
+  "icons": {
+    "48": "icons/todo-48.png"
+  },
+
+  "browser_action": {
+  	"default_icon": "icons/todo-32.png",
+  	"default_title": "To-Do List",
+  	"default_popup": "popup/todo-html.html"
+  }
+
+}	
