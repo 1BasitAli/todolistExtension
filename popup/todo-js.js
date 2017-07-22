@@ -8,53 +8,58 @@ var storageInputReminderHTML;
 localStorage.removeItem("storageInput");
 localStorage.removeItem("storageInputReminderID");
 localStorage.removeItem("storageInputReminderHTML");
+console.log("Success");
 */
+
 
 if (localStorage.getItem("storageInput")) {
 	storageInput = JSON.parse(localStorage.getItem("storageInput"));
 	storageInputReminderID = JSON.parse(localStorage.getItem("storageInputReminderID"));
 	storageInputReminderHTML = JSON.parse(localStorage.getItem("storageInputReminderHTML"));
 
-	for (i = 1; i <= storageInput.numOfClicks; i++) {
-		(function (i) {
+	for (x = 0;  x < Object.keys(storageInputReminderID).length; x++) {
+		(function (x) {
+			storageInputReminderIDArray = Object.values(storageInputReminderID);
+			storageInputReminderHTMLArray = Object.values(storageInputReminderHTML);
+
 			reminderToAppend = document.createElement("div");
-			reminderToAppend.innerHTML = storageInputReminderHTML["reminderInnerHTML" + i];
-			reminderToAppend.id = storageInputReminderID["reminderID" + i];
+			reminderToAppend.innerHTML = storageInputReminderHTMLArray[x];
+			reminderToAppend.id = storageInputReminderIDArray[x];
 			reminderToAppend.className = "classReminder";
 
 			document.body.appendChild(reminderToAppend);
 
-			document.getElementById("idReminder" + i).firstChild.addEventListener("click", function(){
-				var reminderToDelete = document.getElementById("idReminder" + i);
+			document.getElementById(storageInputReminderIDArray[x]).firstChild.addEventListener("click", function(){
+				var reminderToDelete = document.getElementById(storageInputReminderIDArray[x]);
 
-				for (var f in storageInputReminderID) {
-					if (storageInputReminderID[f] == reminderToDelete.id) {
-						delete storageInputReminderHTML[f];
+				for (var i in storageInputReminderID) {
+					if (storageInputReminderID[i] == reminderToDelete.id) {
+						delete storageInputReminderID[i];
 						console.log(storageInputReminderID);
-
 					}
 				}
 
-				for (var j in storageInputReminderHTML) {
-					if (storageInputReminderHTML[j] == reminderToDelete.innerHTML) {
-						delete storageInputReminderHTML[j];
+				for (var y in storageInputReminderHTML) {
+					if (storageInputReminderHTML[y] == reminderToDelete.innerHTML) {
+						delete storageInputReminderHTML[y];
 						console.log(storageInputReminderHTML);
 					}
 				}
 
 				reminderToDelete.remove();
-
 				storageInput.numOfClicks -= 1;
+
 				localStorage.setItem("storageInput", JSON.stringify(storageInput));
 				localStorage.setItem("storageInputReminderID", JSON.stringify(storageInputReminderID));
 				localStorage.setItem("storageInputReminderHTML", JSON.stringify(storageInputReminderHTML));
-			});	
+			});
 
-		}(i));
+		}(x));
 	}
 
 	clicksBuffer = storageInput.numClicksBuffer;
 	clicks = storageInput.numOfClicks;
+
 } else {
 	clicksBuffer = 0;
 	clicks = 0;
