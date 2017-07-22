@@ -8,6 +8,10 @@
     "48": "icons/todo-48.png"
   },
 
+  "permissions": [
+    "storage"
+  ],
+
   "browser_action": {
   	"default_icon": "icons/todo-32.png",
   	"default_title": "To-Do List",
